@@ -19,6 +19,8 @@ A comprehensive Discord bot for managing World of Warcraft raid teams, featuring
 - [Polling Commands](#polling-commands)
 - [Raid Tracking Commands](#raid-tracking-commands)
 - [Roster Management Commands](#roster-management-commands)
+- [Attendance Management Commands](#attendance-management-commands)
+- [Channel Muting Commands](#channel-muting-commands)
 
 ---
 
@@ -426,6 +428,110 @@ Display help information for all roster commands.
 
 ---
 
+## Attendance Management Commands
+
+### !a_start
+This will begin an active attendance tracking session. On running the command it will read the user list from the raid voice channel.
+Those players are auto-marked as present. If they miss the automatic marking, they need to react to the bot's message.
+
+Usage: !attendance_start [raid_name]
+
+**Example**
+```
+!a_start LoU-Week1
+```
+---
+
+### !a_end
+This will end the active attendance tracking session. Should not be ended until the end of the raid night.
+Has smart tracking for the raid voice channel. Will track if people leave early.
+
+**Example**
+```
+!a_end
+```
+---
+
+### !a_mark
+Manually mark attendance for a player if they missed 
+        Usage: !attendance_mark player [status] [late_minutes]
+        Statuses: present (default), late, left_early, excused, unexcused
+
+**Example**
+```
+!a_mark Auliz late 15
+```
+---
+
+### !a_stats
+Displays attendance statistics for a single player.
+
+Usage: !attendance_stats [player] [timeframe]
+        Timeframes: week, month, season, all
+        
+**Example**
+```
+!a_stats Auliz month
+```
+---
+
+### !a_report
+Displays overall raid attendance for the past week or month. Shows Total Raids, Average Attendnace, and anyone below the attendance threshold, also shows 5 most recent raids.
+
+**Example**
+```
+!a_report week
+```
+This will display the weekly raid attendance report.
+
+**Example**
+```
+!a_report month
+```
+This will display the monthly raid attendance report.
+
+---
+
+### !a_excuse
+Used to excuse the absence of a player for tracking purposes.
+
+**Example**
+```
+!a_excuse Auliz 2025-12-25 Christmas
+```
+---
+
+### !a_history
+Display the previous Raid Sessions (sessions created by !a_start). Defaults to last 10 sessions.
+
+**Example**
+```
+!a_history
+```
+
+Can be filtered to a lower increment of sessions.
+
+**Example**
+```
+!a_history 5
+```
+---
+
+### !a_help
+Display help information for all attendance commands
+
+---
+
+## Channel Muting Commands
+
+### !mute
+This will mute all people in the raid voice channel (server mute) exempting officers from being muted.
+
+**Example**
+```
+!mute
+```
+---
 
 ## Support & Contributing
 
